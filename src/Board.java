@@ -17,8 +17,8 @@ public class Board extends Application {
 
 
         primaryStage.setTitle("Battleships");
-        primaryStage.setHeight(1000);
-        primaryStage.setWidth(1000);
+        primaryStage.setHeight(800);
+        primaryStage.setWidth(800);
 
         Button[][] buttons = new Button[10][10];
 
@@ -32,7 +32,9 @@ public class Board extends Application {
                 Rectangle rectangle = new Rectangle(50, 50);
                 rectangle.setStroke(Color.BLACK);
                 GameButton.fireButton();
+
                 buttons[i][j] = GameButton.fireButton();
+
                 if (count % 2 == 0) {
                     rectangle.setFill(Color.ROYALBLUE);
                 } else {
@@ -46,12 +48,12 @@ public class Board extends Application {
 
 
         //skriver ut buttons listan för att se om den är rätt
-//        for (int row = 0; row < 10; row++) {
-//            System.out.println("");
-//            for (int col = 0; col < 10; col++) {
-//                System.out.print(buttons[row][col].getText() + " ");
-//            }
-//        }
+       for (int row = 0; row < 10; row++) {
+           System.out.println("");
+           for (int col = 0; col < 10; col++) {
+                System.out.print(buttons[row][col].getText() + " ");
+            }
+        }
 
         //En hBox som läggs högst upp i fönstret (med position)
         HBox hbox = new HBox();
