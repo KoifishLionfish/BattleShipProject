@@ -1,33 +1,41 @@
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-
 import javax.swing.*;
-
+import javax.xml.soap.Node;
+import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.Random;
+import javafx.scene.control.Button;
 
 public class shipPlacement {
+    public static Button[][] placeRandomShips(Button[][] buttons, int numberOfShips, int shipSize) {
+        Random random = new Random();
+        int gridSize = buttons.length;
 
+        for (int ship = 0; ship < numberOfShips; ship++) {
+            int row = random.nextInt(gridSize);
+            int col = random.nextInt(gridSize);
 
-    public static Button placeShip(){
+            boolean canPlaceShip = true;
+            for (int i = 0; i < shipSize; i++) {
+                if (col + i >= gridSize) {
+                    canPlaceShip = false;
 
-        Button placeShip = new Button("0");
-        // Rectangle placeShip = new Rectangle();
-        // rectangle.setFill(Color.GREEN);
+                } else if (buttons[row][col + i].getText().contains("S")) {
+                    canPlaceShip = false;
+                }
 
-        placeShip.setTextFill(Color.GREEN);
-        placeShip.setPrefSize(40, 40);
-        placeShip.setScaleX(2);
-        placeShip.setScaleY(2);
-        placeShip.setOpacity(0.8);
-        placeShip.setAlignment(Pos.CENTER);
-        placeShip.setShape(new Circle());
+            }
 
+            if (canPlaceShip) {
+                for (int i = 0; i < shipSize; i++) {
+                    buttons[row][col + i].setText("S");
 
-        return placeShip;
+                }
+            } else {
+                ship--;
+            }
+
+        }
+        return buttons;
     }
-
-
 }
+

@@ -26,6 +26,5 @@ public class Main extends Application {
         battelBoard.start(new Stage());
 
 
-
     }
 }
